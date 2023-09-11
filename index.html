@@ -15,7 +15,7 @@
             font-family: Arial, sans-serif;
         }
 		
-		 header {
+        header {
             background-color: #333;
             color: #fff;
             padding: 1px 0;
@@ -24,7 +24,7 @@
 
         .container {
             position: absolute;
-            top: 150px;
+            top: 190px; /* Adjust the top position as needed */
             left: 50%;
             transform: translateX(-50%);
             background-color: rgba(255, 255, 255, 0.8);
@@ -32,7 +32,6 @@
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
             text-align: center;
-        }
 
         h1 {
             font-size: 44px;
@@ -41,19 +40,42 @@
         h2, h3, h4, h5, h6 {
             font-size: 36px;
             margin: 10px 0;
+            background-color: #333;
+            color: #fff;
+            padding: 1px 0;
+            text-align: center;
+        }
+
+        input, button {
+            font-size: 28px;
+            margin: 10px 0;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+        }
+
+        button {
+            background-color: #333;
+            color: #fff;
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        button:hover {
+            background-color: #ff4500;
         }
 
         a {
             text-decoration: none;
             color: #007BFF;
-			font-size: 24px;
+            font-size: 24px;
         }
 
         a:hover {
             text-decoration: underline;
         }
-		
-		        .links {
+
+        .links {
             list-style: none;
             padding: 0;
         }
@@ -71,28 +93,78 @@
         .links a:hover {
             color: #ff4500;
         }
+
+        /* Style for the "Liens" header */
+        .links-header {
+            font-size: 36px;
+            background-color: transparent; /* Remove background color */
+            color: #333;
+            margin: 10px 0;
+        }
+
+        /* Style for the password message */
+        .password-message {
+            font-size: 28px;
+            background-color: transparent; /* Remove background color */
+            margin: 10px 0;
+        }
     </style>
 </head>
 <body>
-<header>
+
+<div id="password-form" class="container">
+    <!-- Password message without a background -->
+    <p class="password-message">Please enter the password to access the content :</p>
+    <input type="password" id="password-input">
+    <button onclick="checkPassword()">Submit</button>
+</div>
+
+<div id="content" style="display: none;">
+    <!-- Your protected content goes here -->
+    <header>
         <h1>Aimer c'est parler</h1>
     </header>
     <div class="container">
-        <h2>Liens</h2>
+        <!-- "Liens" header just under "Aimer c'est parler" -->
+        <h2 class="links-header">Liens</h2>
         <ul class="links">
             <li><a href="https://docs.google.com/spreadsheets/d/1bAHuQ2tTSIw3MZ6_u3w3tZ2799YC2IhtRY9D8C9wAFM/edit?pli=1#gid=0">Calendrier</a></li>
             <li><a href="https://drive.google.com/drive/u/3/folders/1-1WDxRzt99yJ5Tn3ABZvCeVw51AuVpRv">Drive Photos</a></li>
             <li><a href="https://drive.proton.me/urls/W2STPZR430#gkplBKDuUTo8">Drive Films/Séries</a></li>
-            <li><a href="https://open.spotify.com/playlist/0C0rmX95ui03PSuLjgqsDM?si=d830f14f3e8548c7&pt=d9959a674f20d1f4db63fc1190926d11">Playlist soirée</a></li>
+            <li><a href="https://open.spotify.com/playlist/0C0rmX95ui03PSuLjgqsDM?si=d830f14f3e8548c7&pt=d9959a674f20d1f4db63fc1190926d11">Playlist Soirée</a></li>
             <li><a href="https://open.spotify.com/playlist/7yXOVI5insfiPBB2sd2tIt?si=3c64516827be4f6f&pt=7e2a2a3ef357e9c829e161929113f4e8">Playlist Chill</a></li>
         </ul>
     </div>
+</div>
+
+<script>
+    // Array of correct passwords
+    const correctPasswords = ["EMMENTAL74", "emmental74"]; // Add more passwords as needed
+    const passwordInput = document.getElementById("password-input");
+    const submitButton = document.getElementsByName("submit-button")[0];
+
+    function checkPassword() {
+        const enteredPassword = passwordInput.value;
+        if (correctPasswords.includes(enteredPassword)) {
+            document.getElementById("password-form").style.display = "none";
+            document.getElementById("content").style.display = "block";
+        } else {
+            alert("Incorrect password. Please try again.");
+        }
+    }
+
+    // Listen for "Enter" key press on the password input field
+    passwordInput.addEventListener("keydown", function (event) {
+        if (event.key === "Enter") {
+            checkPassword();
+        }
+    });
+</script>
 
 </body>
-
-
-
 </html>
+
+
 
 
 
